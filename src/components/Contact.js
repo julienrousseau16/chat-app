@@ -1,17 +1,25 @@
-import React from 'react'
-import './Contact.css'
+import React from "react";
+import PropTypes from "prop-types";
+import "./Contact.css";
 
-const Contact = () => {
-    return <div className="Contact">
-        <img src='https://randomuser.me/api/portraits/women/85.jpg' alt='avatar-pic' className='avatar' />
-        <div>
-            <h4 className="name">Ann O' Nyme</h4>
-            <div className='status'>
-                <div className='status-online'></div>
-                <p className="status-text">online</p>
-            </div>
+const Contact = props => {
+  return (
+    <div className="Contact">
+      <img src={props.avatar} alt={props.name} className="avatar" />
+      <div>
+        <h4 className="name">{props.name}</h4>
+        <div className="status">
+          <div className={props.online ? "status-online" : "status-offline"} />
+          <p className="status-text">{props.online ? "Online" : "Offline"}</p>
         </div>
+      </div>
     </div>
-}
+  );
+};
 
-export default Contact
+Contact.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  online: PropTypes.bool.isRequired
+};
+export default Contact;
